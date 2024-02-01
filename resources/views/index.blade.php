@@ -4,6 +4,10 @@
 
 @section('content')
 
+<div style="text-align: center;">
+    <img src="/img/others/favicon.png" alt="Imagen del escudo" style="max-width: 120px; display: block; margin: 0 auto;">
+</div>
+
     <h1>Página del Valencia CF</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Temporibus quidem sapiente veniam numquam reprehenderit
@@ -16,5 +20,6 @@
         voluptas laboriosam rerum.
         Voluptates excepturi aspernatur in, impedit quo ipsum harum!
     </p>
+
 
 @endsection

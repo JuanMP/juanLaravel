@@ -18,6 +18,30 @@ Route::get('/', function () {
 })->name('index');
 
 
-Route::get('/players', function(){
-    return view('players.index');
-})->name('players');
+
+//NAV
+Route::view('/', 'index')->name('index');
+Route::view('/players', 'players.index')->name('players');
+Route::view('/events', 'events.index')->name('events');
+Route::view('/store', 'store.index')->name('store');
+Route::view('/contact', 'contact.index')->name('contact');
+Route::view('/location', 'location.index')->name('location');
+
+//FOOTER
+Route::get('/cookies/policy', function () {
+    return view('legal.cookies.policy');
+})->name('legal.cookies.policy');
+
+Route::get('/cookies/settings', function () {
+    return view('legal.cookies.settings');
+})->name('legal.cookies.settings');
+
+Route::get('/privacy/policy', function () {
+    return view('legal.privacy.policy');
+})->name('legal.privacy.policy');
+
+Route::get('/terms/conditions', function () {
+    return view('legal.terms.conditions');
+})->name('legal.terms.conditions');
+
+
