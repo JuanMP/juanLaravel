@@ -1,0 +1,15 @@
+footer{
+    background-color: orange;
+    color: rgba(255, 255, 255, 0.548);
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.footer a{
+    margin: 0 10px;
+    text-decoration: none;
+    color: rgba(0, 0, 255, 0.445);
+}
