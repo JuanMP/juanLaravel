@@ -2,8 +2,7 @@
     <div class="container-fluid">
         <div class="navbar-headed">
             <a class="navbar-brand" href="/">
-                <img src="/img/others/favicon.png" alt="logo" class="brand-img">
-                Valencia CF</a>
+                <img src="/img/others/favicon.png" alt="logo" class="brand-img"></a>
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="{{ route('index') }}">Página Principal</a></li>
@@ -24,15 +23,3 @@
 
 
 
-
-
-
-<!--<nav>
-    <a href="{{ route('index') }}">Inicio</a>
-    <a href="{{ route('players') }}">Plantilla 23-24</a>
-    <a href="{{ route('events') }}">Eventos</a>
-    <a href="{{ route('store') }}">Tienda Oficial</a>
-    <a href="{{ route('contact') }}">Contacto</a>
-    <a href="{{ route('location') }}">Localización</a>
-
-</nav>-->
