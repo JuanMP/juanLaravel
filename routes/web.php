@@ -45,3 +45,7 @@ Route::get('/terms/conditions', function () {
 })->name('legal.terms.conditions');
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
