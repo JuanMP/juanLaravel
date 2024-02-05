@@ -27,6 +27,10 @@ class LoginController extends Controller
         $user->password = Hash::make($request->get('password'));
         $user->rol = 'user';
         $user->save();
+
+        Auth::login($user);
+
+        return redirect()->route('users.profile');
     }
 
     public function loginForm()
@@ -46,7 +50,7 @@ class LoginController extends Controller
         $rememberLogin = ($request->get('remember')) ? true : false;
         if (Auth::guard('web')->attempt($credentials, $rememberLogin)) {
             $request->session()->regenerate();
-            return redirect()->route('users.profile');
+            return redirect()->route('index');
         }else {
             $error = 'Error al acceder a la aplicación';
             return view('auth.login', compact('error'));
