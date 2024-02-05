@@ -64,3 +64,12 @@ Route::get('account', function() {
 
 Route::get('/users/profile', [UserController::class, 'show'])->name('users.profile')->middleware('auth');
 
+Route::get('/admin/add-event', 'AdminController@addEvent')->name('admin.add_event');
+Route::post('/admin/save-event', 'AdminController@saveEvent')->name('admin.save_event');
+
+Route::get('/admin/add-player', 'AdminController@addPlayer')->name('admin.add_player');
+Route::post('/admin/save-player', 'AdminController@savePlayer')->name('admin.save_player');
+
+Route::get('/admin/messages', 'AdminController@messages')->name('admin.messages');
+Route::get('/admin/messages/{id}', 'AdminController@showMessage')->name('admin.show_message');
+Route::delete('/admin/messages/{id}', 'AdminController@deleteMessage')->name('admin.delete_message');
