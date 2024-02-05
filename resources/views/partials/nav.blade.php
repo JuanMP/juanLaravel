@@ -13,9 +13,25 @@
             <li><a href="{{ route('location') }}">Localización</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span>Regístrate</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+            @if (!auth()->check()) <!-- Si el usuario no ha iniciado sesión -->
+                <li><a href="{{ route('signupForm') }}"><span class="glyphicon glyphicon-user"></span>Regístrate</a></li>
+                <li><a href="{{ route('loginForm') }}"><span class="glyphicon glyphicon-log-in"></span>Iniciar sesión</a></li>
+                <li><a href="{{ route('users.profile') }}"><span class="glyphicon glyphicon-user"></span>Admin</a></li>
+            @else <!-- Si el usuario ha iniciado sesión -->
+                @if (auth()->user()->rol === 'admin')
+                    <li><a href="{{ route('admin.profile') }}"><span class="glyphicon glyphicon-user"></span>Admin</a></li>
+                @else
+                    <li><a href="{{ route('users.profile') }}"><span class="glyphicon glyphicon-user"></span>Mi Perfil</a></li>
+                @endif
+                <li>
+                    <form action="{{ route('logout') }}" method="GET">
+                        @csrf
+                        <button type="submit" class="btn btn-link">Cerrar sesión</button>
+                    </form>
+                </li>
+            @endif
         </ul>
+
     </div>
 </nav>
 
