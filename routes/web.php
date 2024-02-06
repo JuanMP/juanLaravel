@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\PlayerController;
+
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PlayerController;
 
 
 /*
@@ -78,3 +79,5 @@ Route::delete('/admin/messages/{id}', 'AdminController@deleteMessage')->name('ad
 
 //JUGADORES
 Route::resource('players', PlayerController::class);
+
+//Jugadores, mostrar show

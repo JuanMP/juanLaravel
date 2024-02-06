@@ -58,7 +58,8 @@ class PlayerController extends Controller
      */
     public function show(Player $player)
     {
-        //
+        //El método para visualizar un jugador en concreto cuando se le hace click
+        return view('players.show', compact('player'));
     }
 
     /**

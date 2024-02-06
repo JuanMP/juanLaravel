@@ -10,7 +10,9 @@
         @auth
         @foreach($players as $player)
         <li>
+            <a href="{{ route('players.show', $player) }}">
             <img src="{{ $player->photo }}" class="player-image">
+            </a>
             <br>
             Nombre: {{ $player->name }}
             <br>
