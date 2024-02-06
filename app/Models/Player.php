@@ -10,6 +10,6 @@ class Player extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'position', 'number', 'twitter', 'instagram', 'twitch', 'visibility'
+        'name', 'position', 'number', 'twitter', 'instagram', 'twitch', 'photo', 'visibility'
     ];
 }

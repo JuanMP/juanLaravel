@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PlayerRequest;
 use App\Models\Player;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,7 @@ class PlayerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PlayerRequest $request)
     {
         //Almacenamos nuevo jugador en la base de datos
         $player = new Player();
@@ -40,6 +41,12 @@ class PlayerController extends Controller
         $player->twitter =  $request->get('twitter');
         $player->instagram = $request->get('instagram');
         $player->twitch = $request->get('twitch');
+
+        if ($request->hasFile('photo')) {
+            $photoPath = $request->file('photo')->store('public/players');
+            $player->photo = str_replace('public/', 'storage/', $photoPath);
+
+        }
         $player->visibility = $request->has('visibility')? 1 :0;
         $player->save();
 

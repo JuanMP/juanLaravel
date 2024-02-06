@@ -18,3 +18,10 @@ footer{
     max-width: 20px;
 }
 
+.player-image{
+    max-width: 100px;
+}
+
+ul{
+    list-style: none;
+}

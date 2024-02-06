@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('twitter');
             $table->text('instagram');
             $table->text('twitch');
+            $table->string('photo')->nullable();
             $table->boolean('visibility')->default(false);
             $table->timestamps();
         });
