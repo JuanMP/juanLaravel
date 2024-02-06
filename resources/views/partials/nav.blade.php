@@ -6,7 +6,7 @@
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="{{ route('index') }}">Página Principal</a></li>
-            <li><a href="{{ route('players') }}">Plantilla</a></li>
+            <li><a href="{{ route('players.index') }}">Plantilla</a></li>
             <li><a href="{{ route('events') }}">Eventos</a></li>
             <li><a href="{{ route('store') }}">Tienda</a></li>
             <li><a href="{{ route('contact') }}">Contacto</a></li>
@@ -19,7 +19,7 @@
                 <li><a>Invitado</a></li>
             @else
                 @if (auth()->user()->rol === 'admin')
-                <li><a href="{{ route('admin.player') }}">Añadir jugador</a></li>
+                <li><a href="{{ route('players.create') }}">Añadir jugador</a></li>
                 <li><a href="{{ route('admin.event') }}">Añadir evento</a></li>
                 <li><a href="{{ route('admin.messages') }}">Mensajes</a></li>
                     <li><a href="{{ route('users.profile') }}"><span class="glyphicon glyphicon-user"></span>Mi Perfil</a></li>

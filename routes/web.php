@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PlayerController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
@@ -73,3 +74,7 @@ Route::post('/admin/save-player', 'AdminController@savePlayer')->name('admin.sav
 Route::get('/admin/messages', 'AdminController@messages')->name('admin.messages');
 Route::get('/admin/messages/{id}', 'AdminController@showMessage')->name('admin.show_message');
 Route::delete('/admin/messages/{id}', 'AdminController@deleteMessage')->name('admin.delete_message');
+
+
+//JUGADORES
+Route::resource('players', PlayerController::class);
