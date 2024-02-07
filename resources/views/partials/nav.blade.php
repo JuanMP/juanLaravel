@@ -9,7 +9,7 @@
             <li><a href="{{ route('players.index') }}">Plantilla</a></li>
             <li><a href="{{ route('events') }}">Eventos</a></li>
             <li><a href="{{ route('store') }}">Tienda</a></li>
-            <li><a href="{{ route('contact') }}">Contacto</a></li>
+            <li><a href="{{ route('messages.create') }}">Contacto</a></li>
             <li><a href="{{ route('location') }}">Localización</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">

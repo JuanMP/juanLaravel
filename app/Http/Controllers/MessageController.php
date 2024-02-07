@@ -24,6 +24,7 @@ class MessageController extends Controller
     public function create()
     {
         //
+        return view('messages.create');
     }
 
     /**
@@ -36,10 +37,9 @@ class MessageController extends Controller
         $message->name = $request->get('name');
         $message->subject = $request->get('subject');
         $message->text = $request->get('text');
-        $message->readed = $request->get('readed');
         $message->save();
 
-        return redirect()->route('messages.index');
+        return redirect()->route('index');
     }
 
     /**
@@ -48,6 +48,11 @@ class MessageController extends Controller
     public function show(Message $message)
     {
         //
+        $message = Message::findOrFail($message->id);
+        $message->readed = true;
+        $message->save();
+
+        return view('messages.show', compact('message'));
     }
 
     /**
@@ -71,6 +76,8 @@ class MessageController extends Controller
      */
     public function destroy(Message $message)
     {
-        //
+        //ruta para poder borrar desde mensajes show
+        $message->delete();
+        return redirect()->route('messages.index');
     }
 }

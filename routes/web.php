@@ -87,9 +87,10 @@ Route::resource('players', PlayerController::class);
 
 //MENSAJES, RUTAS PROVISIONALES
 Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+Route::get('/messages/create', [MessageController::class, 'create'])->name('messages.create');
+Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
 Route::get('/messages/{message}', [MessageController::class, 'show'])->name('messages.show');
 Route::delete('/messages/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
+
+//Ruta resource para mensajes
 Route::resource('messages', MessageController::class);
-Route::get('/messages/create', function () {
-    return view('messages.create');
-})->name('messages.create');
