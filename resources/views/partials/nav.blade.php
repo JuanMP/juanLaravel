@@ -20,7 +20,7 @@
             @else
                 @if (auth()->user()->rol === 'admin')
                 <li><a href="{{ route('players.create') }}">Añadir jugador</a></li>
-
+                <li><a href="{{ route('messages.index') }}">Mensajes</a></li>
                     <li><a href="{{ route('users.profile') }}"><span class="glyphicon glyphicon-user"></span>Mi Perfil</a></li>
                 @else
                     <li><a href="{{ route('users.profile') }}"><span class="glyphicon glyphicon-user"></span>Mi Perfil</a></li>

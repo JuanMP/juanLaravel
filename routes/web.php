@@ -7,6 +7,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PlayerController;
 
+use App\Http\Controllers\MessageController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -81,3 +83,13 @@ Route::delete('/admin/messages/{id}', 'AdminController@deleteMessage')->name('ad
 Route::resource('players', PlayerController::class);
 
 //Jugadores, mostrar show
+
+
+//MENSAJES, RUTAS PROVISIONALES
+Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+Route::get('/messages/{message}', [MessageController::class, 'show'])->name('messages.show');
+Route::delete('/messages/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
+Route::resource('messages', MessageController::class);
+Route::get('/messages/create', function () {
+    return view('messages.create');
+})->name('messages.create');

@@ -14,7 +14,6 @@
                 <div class="card-body">
                     <div class="text-center">
                         <img src="{{ $player->photo }}" class="player-image">
-                        <img src="{{ asset('storage/' . $player->photo) }}" alt="{{ $player->name }}" class="img-fluid rounded-circle" style="width: 200px; height: 200px;">
                     </div>
                     <h3>Nombre:</h3>
                     <p>{{ $player->name }}</p>
