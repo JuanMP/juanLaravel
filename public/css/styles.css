@@ -25,3 +25,15 @@ footer{
 ul{
     list-style: none;
 }
+
+
+.img-fluid{
+    max-width: 240px;
+}
+
+.same-height-images{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}

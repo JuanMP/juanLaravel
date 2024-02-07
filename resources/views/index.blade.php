@@ -8,11 +8,6 @@
         <img src="/img/others/favicon.png" alt="Imagen del escudo" style="max-width: 120px; display: block; margin: 0 auto;">
     </div>
 
-    <br>
-    <br>
-    <br>
-    <br>
-
 
     <h1>Página del Valencia CF</h1>
     <p>El Valencia Club de Fútbol es un club de fútbol centenario, con sede en la ciudad de Valencia en España. Se fundó el
@@ -32,6 +27,14 @@
         como mejor club del mundo en la clasificación mundial de clubes del año 2004.
 
     </p>
+    <br>
+    <br>
+
+    <div class="same-height-images">
+        <img src="/img/others/flag.svg.png" alt="Imagen 1" class="img-fluid">
+        <img src="/img/others/interior.jpg" alt="Imagen 2" class="img-fluid">
+    </div>
+
 
 
 
