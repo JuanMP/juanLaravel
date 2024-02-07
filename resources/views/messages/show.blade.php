@@ -5,13 +5,13 @@
 @section('content')
 
 <h3>Mensaje de {{ $message->name }}</h3>
-<h3>Asunto: {{ $message->subject }}</h3>
-<h3>Mensaje: {{ $message->text }}</h3>
+<h4><strong>Asunto: </strong>{{ $message->subject }}</h4>
+<h4><strong>Mensaje:</strong> {{ $message->text }}</h4>
 
 <form action="{{ route('messages.destroy', $message) }}" method="post">
 @csrf
 @method('delete')
-<input type="submit" value="Eliminar">
+<input type="submit" class="btn btn-danger" value="Eliminar">
 </form>
 
 
