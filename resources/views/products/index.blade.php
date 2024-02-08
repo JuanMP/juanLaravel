@@ -9,11 +9,11 @@
 
     @auth
     <div class="text-center">
-    <img src="/img/products/localshirt.jpeg" alt="Imagen 1" class="img-fluid">
         @foreach($products as $product)
         <h3>{{ $product->name }}</h3>
         <h4>{{ $product->price }} €</h4>
         <h4>{{ $product->stock }} Uds</h4>
+        <img src="{{ $product->photo }}" alt="foto camiseta" class="player-image">
         @endforeach
     </div>
     @endauth
