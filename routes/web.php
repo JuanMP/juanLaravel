@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PlayerController;
 
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ProductController;
 
 
 /*
@@ -94,3 +95,7 @@ Route::delete('/messages/{message}', [MessageController::class, 'destroy'])->nam
 
 //Ruta resource para mensajes
 Route::resource('messages', MessageController::class);
+
+
+//RUTA TIENDA
+Route::resource('products', ProductController::class);

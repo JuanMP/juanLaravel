@@ -15,6 +15,9 @@
     <label for="email">Email</label>
     <input type="text" name="email" id="email" value="{{ old('email') }}"><br>
 
+    <label for="birthday">Fecha de nacimiento</label>
+    <input type="date" name="birthday" id="birthday" value="{{ old('birthday') }}"><br>
+
     <label for="password">Contraseña</label>
     <input type="password" name="password" id="password"><br>
 

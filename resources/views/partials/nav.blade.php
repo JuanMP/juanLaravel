@@ -8,7 +8,7 @@
             <li class="active"><a href="{{ route('index') }}">Página Principal</a></li>
             <li><a href="{{ route('players.index') }}">Plantilla</a></li>
             <li><a href="{{ route('events') }}">Eventos</a></li>
-            <li><a href="{{ route('store') }}">Tienda</a></li>
+            <li><a href="{{ route('products.index') }}">Tienda</a></li>
             <li><a href="{{ route('messages.create') }}">Contacto</a></li>
             <li><a href="{{ route('location') }}">Localización</a></li>
         </ul>
