@@ -44,7 +44,7 @@ class PlayerController extends Controller
 
         if ($request->hasFile('photo')) {
             $photoPath = $request->file('photo')->store('public/players');
-            $player->photo = str_replace('public/', 'storage/', $photoPath);
+            $player->photo = str_replace('public/', '/storage/', $photoPath);
 
         }
         $player->visibility = $request->has('visibility')? 1 :0;
