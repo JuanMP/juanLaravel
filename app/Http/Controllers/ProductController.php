@@ -22,10 +22,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //Almacenamos nueva artículo de la tienda
-        $product = new Product();
-        $product->name = $request->get('name');
-        $product
+        //
     }
 
     /**
