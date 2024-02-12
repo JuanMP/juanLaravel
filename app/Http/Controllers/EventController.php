@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\EventRequest;
+
 class EventController extends Controller
 {
     /**
@@ -30,7 +32,7 @@ class EventController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
         //Almacenamos el nuevo evento en la base de datos
         $event = new Event();
@@ -38,10 +40,10 @@ class EventController extends Controller
         $event->description = $request->get('description');
         $event->location = $request->get('location');
         $event->date = $request->get('date');
-        $event->hour = $request->get('time');
+        $event->hour = $request->get('hour');
         $event->type = $request->get('type');
         $event->tags = $request->get('tags');
-        $event->visible = $request->has('visibility')? 1 : 0;
+        $event->visibility = $request->has('visibility')? 1 : 0;
         $event->save();
 
         return view('events.stored', compact('event'));
