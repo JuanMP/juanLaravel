@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
@@ -99,3 +100,6 @@ Route::resource('messages', MessageController::class);
 
 //RUTA TIENDA
 Route::resource('products', ProductController::class);
+
+//RUTA EVENTOS
+Route::resource('events', EventController::class);

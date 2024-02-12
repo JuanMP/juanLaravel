@@ -6,7 +6,7 @@
 
 <h1>Añadir evento</h1>
 
-<form action="{{ route('events.store') }}" method="post">
+<form action="{{ route('events.store') }}" enctype="multipart/form-data" method="post">
     @csrf
 
     <div class="form-group">
