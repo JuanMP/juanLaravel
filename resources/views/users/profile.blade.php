@@ -11,4 +11,6 @@
     <p>Fecha de nacimiento: {{ $user->birthday }}</p>
     <p>Tipo de cuenta: {{ $user->rol }}</p>
 
+    <a href="{{ route('users.edit', $user)}}">Editar datos</a>
+
 @endsection

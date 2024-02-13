@@ -103,3 +103,6 @@ Route::resource('products', ProductController::class);
 
 //RUTA EVENTOS
 Route::resource('events', EventController::class);
+
+//RUTA PARA EDITAR PERFIL (hecho sin mcr crud)
+Route::resource('users', UserController::class);

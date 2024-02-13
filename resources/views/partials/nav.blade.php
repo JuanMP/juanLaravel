@@ -22,9 +22,9 @@
                 <li><a href="{{ route('events.create') }}">Añadir evento</a></li>
                 <li><a href="{{ route('players.create') }}">Añadir jugador</a></li>
                 <li><a href="{{ route('messages.index') }}">Mensajes</a></li>
-                    <li><a href="{{ route('users.profile') }}"><span class="glyphicon glyphicon-user"></span>Mi Perfil</a></li>
+                    <li><a href="{{ route('users.profile') }}"><span class="glyphicon glyphicon-user"></span>Cuenta</a></li>
                 @else
-                    <li><a href="{{ route('users.profile') }}"><span class="glyphicon glyphicon-user"></span>Mi Perfil</a></li>
+                    <li><a href="{{ route('users.profile') }}"><span class="glyphicon glyphicon-user"></span>Cuenta</a></li>
                 @endif
                 <li>
                     <form action="{{ route('logout') }}" method="GET">
