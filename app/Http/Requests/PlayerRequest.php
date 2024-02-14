@@ -25,8 +25,8 @@ class PlayerRequest extends FormRequest
         return [
             //REGLAS DE VALIDACION PARA NUEVOS JUGADORES
 
-            'name' => 'required|string|max:20',
-            'position' => 'required|string|',
+            'name' => 'required|string|max:30',
+            'position' => 'required|string|max:3',
             'number' => 'integer',
 
         ];
@@ -36,8 +36,10 @@ class PlayerRequest extends FormRequest
     {
         return [
             'name.required' => 'Introduce el nombre del jugador',
-            'name.max' => 'El nombre no puede contener más de 20 carácteres',
+            'name.string' => 'El nombre debe tener letras',
+            'name.max' => 'El nombre no puede contener más de 30 carácteres',
             'position.required' => 'La posición es obligatoria',
+            'position.max' => 'La posición no puede tener más de 3 letras',
             'number.integer' => 'Debes añadir un número',
         ];
     }

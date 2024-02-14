@@ -5,12 +5,12 @@
                 <img src="/img/others/favicon.png" alt="logo" class="brand-img"></a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="{{ route('index') }}">Página Principal</a></li>
+            <li><a href="{{ route('index') }}">Inicio</a></li>
             <li><a href="{{ route('players.index') }}">Plantilla</a></li>
             <li><a href="{{ route('events.index') }}">Eventos</a></li>
             <li><a href="{{ route('products.index') }}">Tienda</a></li>
             <li><a href="{{ route('messages.create') }}">Contacto</a></li>
-            <li><a href="{{ route('location') }}">Localización</a></li>
+            <li><a href="{{ route('location') }}">Ubicación</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             @if (!auth()->check())
