@@ -9,33 +9,48 @@
         @if ($orderEvents->isEmpty())
             <p class="text-center">No hay próximos eventos.</p>
         @else
-            <div class="row">
-                @foreach ($orderEvents as $event)
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">{{ $event->name }}</h4>
-                                <p class="card-text">{{ $event->description }}</p>
-                                <ul class="list-unstyled">
-                                    <li><strong>Ubicación:</strong> {{ $event->location }}</li>
-                                    <li><strong>Fecha:</strong> {{ $event->date }}</li>
-                                    <li><strong>Hora:</strong> {{ $event->hour }}</li>
-                                    <li><strong>Tipo:</strong> {{ ($event->type) }}</li>
-                                    <li><strong>Etiquetas:</strong> {{ $event->tags }}</li>
-                                </ul>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Ubicación</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Tipo</th>
+                            <th>Etiquetas</th>
+                            @if (auth()->user()->isAdmin())
+                                <th>Acciones</th>
+                            @endif
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($orderEvents as $event)
+                            <tr>
+                                <td>{{ $event->name }}</td>
+                                <td>{{ $event->description }}</td>
+                                <td>{{ $event->location }}</td>
+                                <td>{{ $event->date }}</td>
+                                <td>{{ $event->hour }}</td>
+                                <td>{{ $event->type }}</td>
+                                <td>{{ $event->tags }}</td>
                                 @if (auth()->user()->isAdmin())
-                                <a href="{{ route('events.edit', $event) }}">Editar</a>
-                                <form action="{{ route('events.destroy', $event) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit">Eliminar</button>
-                                </form>
+                                    <td>
+                                        <a href="{{ route('events.show', $event->id) }}" class="btn btn-primary btn-sm">Ver detalles</a>
+
+                                        <a href="{{ route('events.edit', $event) }}" class="btn btn-warning btn-sm">Editar</a>
+                                        <form action="{{ route('events.destroy', $event) }}" method="post" style="display: inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                        </form>
+                                    </td>
                                 @endif
-                                <a href="{{ route('events.show', $event->id) }}" class="btn btn-primary">Ver detalles</a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         @endif
     </div>
