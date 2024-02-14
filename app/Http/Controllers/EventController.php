@@ -14,9 +14,17 @@ class EventController extends Controller
      */
     public function index()
     {
+        //likes
+
+
         //devuelve los eventos
-        $events = Event::All();
-        return view('events.index', compact('events'));
+        //$events = Event::All();
+        //return view('events.index', compact('events'));
+
+        //devuelve los eventos ordenados por fecha
+        $orderEvents = Event::where('date', '>=', now())->orderBy('date', 'asc')->get();
+
+        return view('events.index', ['orderEvents' => $orderEvents]);
     }
 
     /**
@@ -54,7 +62,9 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        //mostrar detalles de un evento (último punto)
+        return view('events.show', compact('event'));
+
     }
 
     /**
@@ -62,7 +72,8 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        //función para editar el evento si eres admin
+        return view('events.edit', compact('event'));
     }
 
     /**
@@ -70,7 +81,15 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        //
+        //validar y actualizar lo editado
+        $request->validate([
+            'name' => 'required|string|max:30',
+        ]);
+
+        //actualizar los datos del evento con los datos del formulario
+        $event->update($request->all());
+
+        return redirect()->route('events.show', $event);
     }
 
     /**
@@ -78,6 +97,9 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        //función para eliminar un evento
+        $event->delete();
+
+        return redirect()->route('events.index');
     }
 }

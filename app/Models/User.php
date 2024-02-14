@@ -44,4 +44,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    //devolvemos admin si es
+    public function isAdmin()
+    {
+        return $this->rol === 'admin';
+    }
 }

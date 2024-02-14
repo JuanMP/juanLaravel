@@ -106,3 +106,6 @@ Route::resource('events', EventController::class);
 
 //RUTA PARA EDITAR PERFIL (hecho sin mcr crud)
 Route::resource('users', UserController::class);
+
+//RUTA PARA INDEX EVENTOS MOSTRAR ORDENADOS
+Route::get('/events', [EventController::class, 'index'])->name('events.index');

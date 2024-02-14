@@ -27,10 +27,10 @@
                     <li><a href="{{ route('users.profile') }}"><span class="glyphicon glyphicon-user"></span>Cuenta</a></li>
                 @endif
                 <li>
-                    <form action="{{ route('logout') }}" method="GET">
-                        @csrf
-                        <button type="submit" class="btn btn-link">Cerrar sesión</button>
-                    </form>
+                <form action="{{ route('logout') }}" method="GET">
+                    @csrf
+                <button type="submit" class="btn btn-link">Cerrar sesión</button>
+                </form>
                 </li>
             @endif
         </ul>
