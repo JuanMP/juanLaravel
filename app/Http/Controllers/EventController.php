@@ -7,25 +7,29 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\EventRequest;
 
+use Auth;
+
 class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //likes
+{
+    //obtener los eventos ordenados por fecha
+    $orderEvents = Event::where('date', '>=', now())->orderBy('date', 'asc')->get();
 
-
-        //devuelve los eventos
-        //$events = Event::All();
-        //return view('events.index', compact('events'));
-
-        //devuelve los eventos ordenados por fecha
-        $orderEvents = Event::where('date', '>=', now())->orderBy('date', 'asc')->get();
-
-        return view('events.index', ['orderEvents' => $orderEvents]);
+    //obtener los IDs de los eventos que le gustan al usuario (si está autenticado)
+    $likes = [];
+    if (Auth::check()) {
+        $user = Auth::user();
+        $likes = $user->likedEvents()->pluck('id')->toArray();
     }
+
+    // Pasar los datos a la vista
+    return view('events.index', compact('orderEvents', 'likes'));
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -36,6 +40,7 @@ class EventController extends Controller
         $events = Event::All();
         return view('events.create', compact('events'));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -65,7 +70,17 @@ class EventController extends Controller
         //mostrar detalles de un evento (último punto)
         return view('events.show', compact('event'));
 
+        $user = Auth::user();
+
+        if ($user->likedEvents()->where('id', $event->id)->exists()) {
+            $like = true;
+        } else {
+            $like = false;
+        }
+
+        return view('events.show',compact('event', 'like'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -101,5 +116,29 @@ class EventController extends Controller
         $event->delete();
 
         return redirect()->route('events.index');
+    }
+
+    //función para dar like
+    public function EventLike(Request $request, Event $event)
+    {
+        $event = Event::findOrFail($event->id);
+        $userId = auth()->id();
+        $event->users()->attach($userId);
+
+        return redirect()->back();
+    }
+
+    //función para quitar like
+    public function deleteLike(Request $request, Event $event)
+    {
+        $user = auth()->user();
+
+        if($user->likedEvents()->where('id', $event->id)->exists())
+        {
+            $user->likedEvents()->detach($event->id);
+            return redirect()->back();
+        }
+
+        return redirect()->back();
     }
 }

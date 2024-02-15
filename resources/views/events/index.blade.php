@@ -38,13 +38,24 @@
                                 @if (auth()->check() && auth()->user()->isAdmin())
                                     <td>
                                         <a href="{{ route('events.show', $event->id) }}" class="btn btn-primary btn-sm">Ver detalles</a>
-
-                                        <a href="{{ route('events.edit', $event) }}" class="btn btn-warning btn-sm">Editar</a>
-                                        <form action="{{ route('events.destroy', $event) }}" method="post" style="display: inline-block;">
+                                        <a href="{{ route('events.edit', $event->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                                        <form action="{{ route('events.destroy', $event->id) }}" method="post" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                                         </form>
+                                        @if (in_array($event->id, $likes))
+                                            <form action="{{ route('event.deleteLike', $event->id) }}" method="post">
+                                                @method('delete')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger btn-sm">Quitar me gusta</button>
+                                            </form>
+                                        @else
+                                            <form action="{{ route('event.like', $event->id) }}" method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-success btn-sm">Me gusta</button>
+                                            </form>
+                                        @endif
                                     </td>
                                 @endif
                             </tr>

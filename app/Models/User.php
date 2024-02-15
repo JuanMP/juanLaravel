@@ -50,4 +50,10 @@ class User extends Authenticatable
     {
         return $this->rol === 'admin';
     }
+
+    //likes
+    public function likedEvents()
+    {
+        return $this->belongsToMany(Event::class, 'event_user', 'user_id', 'event_id');
+    }
 }

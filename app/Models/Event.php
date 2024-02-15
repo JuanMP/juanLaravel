@@ -12,4 +12,9 @@ class Event extends Model
 //me pide excluir el campo finalmente para que no se intente guardar en la base de datos
 protected $guarded = ['_token'];
 
+public function users()
+    {
+        return $this->belongsToMany(User::class, 'event_user', 'event_id', 'user_id');
+    }
+
 }

@@ -109,3 +109,7 @@ Route::resource('users', UserController::class);
 
 //RUTA PARA INDEX EVENTOS MOSTRAR ORDENADOS
 Route::get('/events', [EventController::class, 'index'])->name('events.index');
+
+//likes
+Route::post('event/{event}/like', [EventController::class, 'eventLike'])->name('event.like');
+Route::delete('event/{event}/deleteLike', [EventController::class, 'deleteLike'])->name('event.deleteLike');
