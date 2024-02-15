@@ -29,7 +29,7 @@ Route::get('/', function () {
 
 
 
-//NAV
+//Navbar
 Route::view('/', 'index')->name('index');
 Route::view('/players', 'players.index')->name('players');
 Route::view('/events', 'events.index')->name('events');
@@ -37,7 +37,7 @@ Route::view('/store', 'store.index')->name('store');
 Route::view('/contact', 'contact.index')->name('contact');
 Route::view('/location', 'location.index')->name('location');
 
-//FOOTER
+//Footer
 Route::get('/cookies/policy', function () {
     return view('legal.cookies.policy');
 })->name('legal.cookies.policy');
@@ -56,60 +56,74 @@ Route::get('/terms/conditions', function () {
 
 
 
-//INICIO DE SESION
+//Inicio de Sesión
 Route::get('signup', [LoginController::class, 'signupForm'])->name('signupForm');
 Route::post('signup', [LoginController::class, 'signup'])->name('signup');
 Route::get('login', [LoginController::class, 'loginForm'])->name('loginForm');
 Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('account', function() {
-    return view('users.profile');
-})->name('users.profile')
-->middleware('auth');
+//Ruta para acceder a Cuenta si eres usuario o admin
+// Route::get('account', function() {
+//     return view('users.profile');
+// })->name('users.profile')
+// ->middleware('auth');
 
+
+//Ruta que permite acceder a los usuarios o admin, si no será redirigido a Inicio
 Route::get('/users/profile', [UserController::class, 'show'])->name('users.profile')->middleware('auth');
 
-Route::get('/admin/add-event', 'AdminController@addEvent')->name('admin.add_event');
-Route::post('/admin/save-event', 'AdminController@saveEvent')->name('admin.save_event');
+// Route::get('/admin/add-event', 'AdminController@addEvent')->name('admin.add_event');
+// Route::post('/admin/save-event', 'AdminController@saveEvent')->name('admin.save_event');
 
-Route::get('/admin/add-player', 'AdminController@addPlayer')->name('admin.add_player');
-Route::post('/admin/save-player', 'AdminController@savePlayer')->name('admin.save_player');
+// Route::get('/admin/add-player', 'AdminController@addPlayer')->name('admin.add_player');
+// Route::post('/admin/save-player', 'AdminController@savePlayer')->name('admin.save_player');
 
-Route::get('/admin/messages', 'AdminController@messages')->name('admin.messages');
-Route::get('/admin/messages/{id}', 'AdminController@showMessage')->name('admin.show_message');
-Route::delete('/admin/messages/{id}', 'AdminController@deleteMessage')->name('admin.delete_message');
+// Route::get('/admin/messages', 'AdminController@messages')->name('admin.messages');
+// Route::get('/admin/messages/{id}', 'AdminController@showMessage')->name('admin.show_message');
+// Route::delete('/admin/messages/{id}', 'AdminController@deleteMessage')->name('admin.delete_message');
 
 
 //JUGADORES
 Route::resource('players', PlayerController::class);
 
-//Jugadores, mostrar show
+// //MENSAJES, RUTAS PROVISIONALES
+// Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+// Route::get('/messages/create', [MessageController::class, 'create'])->name('messages.create');
+// Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
+// Route::get('/messages/{message}', [MessageController::class, 'show'])->name('messages.show');
+// Route::delete('/messages/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
+
+// //Ruta resource para mensajes
+// Route::resource('messages', MessageController::class);
 
 
-//MENSAJES, RUTAS PROVISIONALES
-Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
-Route::get('/messages/create', [MessageController::class, 'create'])->name('messages.create');
-Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
-Route::get('/messages/{message}', [MessageController::class, 'show'])->name('messages.show');
-Route::delete('/messages/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
+// //RUTA TIENDA
+// Route::resource('products', ProductController::class);
 
-//Ruta resource para mensajes
+// //RUTA EVENTOS
+// Route::resource('events', EventController::class);
+
+// //RUTA PARA EDITAR PERFIL (hecho sin mcr crud)
+// Route::resource('users', UserController::class);
+
+// //Ruta para Index Eventos (mostrar ordenados)
+// Route::get('/events', [EventController::class, 'index'])->name('events.index');
+
+// Ruta resource para mensajes
 Route::resource('messages', MessageController::class);
 
-
-//RUTA TIENDA
+// RUTA TIENDA
 Route::resource('products', ProductController::class);
 
-//RUTA EVENTOS
+// RUTA EVENTOS
 Route::resource('events', EventController::class);
 
-//RUTA PARA EDITAR PERFIL (hecho sin mcr crud)
+// RUTA PARA EDITAR PERFIL (hecho sin mcr crud)
 Route::resource('users', UserController::class);
 
-//RUTA PARA INDEX EVENTOS MOSTRAR ORDENADOS
-Route::get('/events', [EventController::class, 'index'])->name('events.index');
 
-//likes
+
+//Rutas para likes
 Route::post('event/{event}/like', [EventController::class, 'eventLike'])->name('event.like');
 Route::delete('event/{event}/deleteLike', [EventController::class, 'deleteLike'])->name('event.deleteLike');
