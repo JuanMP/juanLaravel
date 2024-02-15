@@ -20,7 +20,7 @@
                             <th>Hora</th>
                             <th>Tipo</th>
                             <th>Etiquetas</th>
-                            @if (auth()->user()->isAdmin())
+                            @if (auth()->check() && auth()->user()->isAdmin())
                                 <th>Acciones</th>
                             @endif
                         </tr>
@@ -35,7 +35,7 @@
                                 <td>{{ $event->hour }}</td>
                                 <td>{{ $event->type }}</td>
                                 <td>{{ $event->tags }}</td>
-                                @if (auth()->user()->isAdmin())
+                                @if (auth()->check() && auth()->user()->isAdmin())
                                     <td>
                                         <a href="{{ route('events.show', $event->id) }}" class="btn btn-primary btn-sm">Ver detalles</a>
 
