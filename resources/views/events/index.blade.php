@@ -48,7 +48,7 @@
                                             <form action="{{ route('event.deleteLike', $event->id) }}" method="post">
                                                 @method('delete')
                                                 @csrf
-                                                <button type="submit" class="btn btn-danger btn-sm">Quitar me gusta</button>
+                                                <button type="submit" class="btn btn-danger btn-sm">Ya no me gusta</button>
                                             </form>
                                         @else
                                             <form action="{{ route('event.like', $event->id) }}" method="post">

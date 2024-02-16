@@ -20,6 +20,14 @@
             <br>
             Dorsal: {{ $player->number }}
             <br>
+            <form action="{{ route('players.updateVisibility', $player) }}" method="POST">
+                @csrf
+                @method('PATCH')
+                <input type="hidden" name="visibility" value="{{ $player->visibility ? 0 : 1 }}">
+                <button type="submit" class="btn btn-primary btn-xs">
+                    {{ $player->visibility ? 'Ocultar' : 'Mostrar' }}
+                </button>
+            </form>
 
         </li>
         @endforeach

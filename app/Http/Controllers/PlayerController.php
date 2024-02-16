@@ -85,4 +85,18 @@ class PlayerController extends Controller
     {
         //
     }
+
+    //función creada para la visibilidad de los jugadores
+    public function updateVisibility(Request $request, Player $player)
+{
+    $request->validate([
+        'visibility' => 'required|boolean',
+    ]);
+
+    $player->visibility = $request->input('visibility');
+    $player->save();
+
+    return redirect()->back();
+}
+
 }

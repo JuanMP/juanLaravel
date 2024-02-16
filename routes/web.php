@@ -127,3 +127,7 @@ Route::resource('users', UserController::class);
 //Rutas para likes
 Route::post('event/{event}/like', [EventController::class, 'eventLike'])->name('event.like');
 Route::delete('event/{event}/deleteLike', [EventController::class, 'deleteLike'])->name('event.deleteLike');
+
+//Ruta para la visibilidad de los jugadores
+Route::patch('/players/{player}/visibility', [PlayerController::class, 'updateVisibility'])
+    ->name('players.updateVisibility');

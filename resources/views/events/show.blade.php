@@ -16,6 +16,20 @@
 <p>Etiquetas: {{ $event->tags }}</p>
 <p>Visible ? {{ $event->visible ? 'Sí' : 'No' }}</p>
 
-<a href="{{ route('events.index') }}">Volver</a>
+@if(auth()->check() && auth()->user()->likedEvents->contains($event))
+    <form action="{{ route('event.deleteLike', $event->id) }}" method="post">
+        @method('delete')
+        @csrf
+        <button type="submit" class="btn btn-danger btn-sm">Ya no me gusta</button>
+    </form>
+@else
+    <form action="{{ route('event.like', $event->id) }}" method="post">
+        @csrf
+        <button type="submit" class="btn btn-success btn-sm">Me gusta</button>
+    </form>
+@endif
+<br>
+
+<a href="{{ route('events.index') }}" class="btn btn-primary mt-3 btn-sm">Volver</a>
 
 @endsection
