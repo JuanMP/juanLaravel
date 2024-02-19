@@ -30,8 +30,8 @@
                                 @csrf
                                 @method('PATCH')
                                 <input type="hidden" name="visibility" value="{{ $player->visibility ? 0 : 1 }}">
-                                <button type="submit" class="btn btn-primary btn-xs">
-                                    {{ $player->visibility ? 'Ocultar' : 'Mostrar' }}
+                                <button type="submit" class="btn btn-{{ $player->visibility ? 'primary' : 'danger' }} btn-xs">
+                                {{ $player->visibility ? 'Ahora mostrado' : 'Ahora oculto' }}
                                 </button>
                             </form>
                         @endif

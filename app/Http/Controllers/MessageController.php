@@ -39,7 +39,7 @@ class MessageController extends Controller
         $message->text = $request->get('text');
         $message->save();
 
-        return redirect()->route('index');
+        return view('messages.stored', compact('message'));
     }
 
     /**

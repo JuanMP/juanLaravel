@@ -97,6 +97,8 @@ Route::delete('event/{event}/deleteLike', [EventController::class, 'deleteLike']
         Route::resource('messages', MessageController::class)->except('messages.create');
         //Ruta para añadir evento
         Route::get('events/create', [EventController::class, 'create'])->name('events.create');
+        //Ruta para añadir jugador
+        Route::get('players/create', [PlayerController::class, 'create'])->name('players.create');
         //Ruta para la visibilidad de los jugadores
         Route::patch('/players/{player}/visibility', [PlayerController::class, 'updateVisibility'])
     ->name('players.updateVisibility');
