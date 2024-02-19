@@ -88,12 +88,13 @@ Route::resource('players', PlayerController::class);
 Route::post('event/{event}/like', [EventController::class, 'eventLike'])->name('event.like');
 Route::delete('event/{event}/deleteLike', [EventController::class, 'deleteLike'])->name('event.deleteLike');
 
+//Ruta para enviar mensajes
 
 
 
     //Rutas para Admin
     Route::middleware('auth.admin')->group(function (){
-        Route::resource('messages', MessageController::class);
+        Route::resource('messages', MessageController::class)->except('messages.create');
         //Ruta para añadir evento
         Route::get('events/create', [EventController::class, 'create'])->name('events.create');
         //Ruta para la visibilidad de los jugadores
@@ -103,6 +104,8 @@ Route::delete('event/{event}/deleteLike', [EventController::class, 'deleteLike']
 
     });
 
+    Route::get('messages/create', [MessageController::class, 'create'])->name('messages.create');
+    Route::post('messages', [MessageController::class, 'store'])->name('messages.store');
 
 
 

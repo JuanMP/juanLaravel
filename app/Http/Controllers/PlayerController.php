@@ -42,9 +42,13 @@ class PlayerController extends Controller
         $player->instagram = $request->get('instagram');
         $player->twitch = $request->get('twitch');
 
+        //Se añade la foto que el usuario quiere, si no hay foto hará el else y pondrá una por defecto
         if ($request->hasFile('photo')) {
             $photoPath = $request->file('photo')->store('public/players');
             $player->photo = str_replace('public/', '/storage/', $photoPath);
+
+        }else {
+            $player->photo = "/img/others/player.jpg";
 
         }
         $player->visibility = $request->has('visibility')? 1 :0;
