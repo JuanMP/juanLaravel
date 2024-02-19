@@ -8,7 +8,7 @@ class AdminController extends Controller
 {
     //APLICAR LAS 3 FUNCIONES EXTRA DE ADMIN
 
-    public function addPlayer()
+    /*public function addPlayer()
     {
         return view('admin.player');
     }
@@ -23,7 +23,7 @@ class AdminController extends Controller
         return view('admin.messages');
     }
 
-    /*public function saveEvent()
+    public function saveEvent()
     {
         return view('admin.event');
     }

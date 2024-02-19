@@ -68,18 +68,15 @@ class EventController extends Controller
     public function show(Event $event)
     {
         //mostrar detalles de un evento (último punto)
-        return view('events.show', compact('event'));
-
+        $like = false;
+    if (Auth::check()) {
         $user = Auth::user();
-
-        if ($user->likedEvents()->where('id', $event->id)->exists()) {
-            $like = true;
-        } else {
-            $like = false;
-        }
-
-        return view('events.show',compact('event', 'like'));
+        $like = $user->likedEvents()->where('id', $event->id)->exists();
     }
+
+    // Mostrar detalles del evento
+    return view('events.show', compact('event', 'like'));
+}
 
 
     /**

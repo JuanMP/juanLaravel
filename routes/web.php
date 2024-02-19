@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,11 +24,10 @@ use App\Http\Controllers\ProductController;
 |
 */
 
+//Ruta Principal
 Route::get('/', function () {
     return view('index');
 })->name('index');
-
-
 
 //Navbar
 Route::view('/', 'index')->name('index');
@@ -55,13 +55,67 @@ Route::get('/terms/conditions', function () {
 })->name('legal.terms.conditions');
 
 
-
-//Inicio de Sesión
+//Inicio de Sesión y Registro
 Route::get('signup', [LoginController::class, 'signupForm'])->name('signupForm');
 Route::post('signup', [LoginController::class, 'signup'])->name('signup');
 Route::get('login', [LoginController::class, 'loginForm'])->name('loginForm');
 Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+
+
+
+//Ruta que permite acceder a los usuarios o admin, si no será redirigido a Inicio
+Route::get('/users/profile', [UserController::class, 'show'])->name('users.profile')->middleware('auth');
+
+
+//Ruta resource para mensajes
+
+//RUTA TIENDA
+Route::resource('products', ProductController::class);
+
+//RUTA EVENTOS
+Route::resource('events', EventController::class);
+
+//RUTA PARA EDITAR PERFIL (hecho sin mcr crud)
+Route::resource('users', UserController::class);
+
+//Ruta para página Jugadores
+Route::resource('players', PlayerController::class);
+
+
+//Rutas para likes
+Route::post('event/{event}/like', [EventController::class, 'eventLike'])->name('event.like');
+Route::delete('event/{event}/deleteLike', [EventController::class, 'deleteLike'])->name('event.deleteLike');
+
+
+
+
+    //Rutas para Admin
+    Route::middleware('auth.admin')->group(function (){
+        Route::resource('messages', MessageController::class);
+        //Ruta para añadir evento
+        Route::get('events/create', [EventController::class, 'create'])->name('events.create');
+        //Ruta para la visibilidad de los jugadores
+        Route::patch('/players/{player}/visibility', [PlayerController::class, 'updateVisibility'])
+    ->name('players.updateVisibility');
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Ruta para acceder a Cuenta si eres usuario o admin
 // Route::get('account', function() {
@@ -69,9 +123,6 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 // })->name('users.profile')
 // ->middleware('auth');
 
-
-//Ruta que permite acceder a los usuarios o admin, si no será redirigido a Inicio
-Route::get('/users/profile', [UserController::class, 'show'])->name('users.profile')->middleware('auth');
 
 // Route::get('/admin/add-event', 'AdminController@addEvent')->name('admin.add_event');
 // Route::post('/admin/save-event', 'AdminController@saveEvent')->name('admin.save_event');
@@ -84,8 +135,7 @@ Route::get('/users/profile', [UserController::class, 'show'])->name('users.profi
 // Route::delete('/admin/messages/{id}', 'AdminController@deleteMessage')->name('admin.delete_message');
 
 
-//JUGADORES
-Route::resource('players', PlayerController::class);
+
 
 // //MENSAJES, RUTAS PROVISIONALES
 // Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
@@ -109,25 +159,3 @@ Route::resource('players', PlayerController::class);
 
 // //Ruta para Index Eventos (mostrar ordenados)
 // Route::get('/events', [EventController::class, 'index'])->name('events.index');
-
-// Ruta resource para mensajes
-Route::resource('messages', MessageController::class);
-
-// RUTA TIENDA
-Route::resource('products', ProductController::class);
-
-// RUTA EVENTOS
-Route::resource('events', EventController::class);
-
-// RUTA PARA EDITAR PERFIL (hecho sin mcr crud)
-Route::resource('users', UserController::class);
-
-
-
-//Rutas para likes
-Route::post('event/{event}/like', [EventController::class, 'eventLike'])->name('event.like');
-Route::delete('event/{event}/deleteLike', [EventController::class, 'deleteLike'])->name('event.deleteLike');
-
-//Ruta para la visibilidad de los jugadores
-Route::patch('/players/{player}/visibility', [PlayerController::class, 'updateVisibility'])
-    ->name('players.updateVisibility');

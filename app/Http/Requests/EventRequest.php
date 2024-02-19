@@ -22,11 +22,11 @@ class EventRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            //Reglas para validar eventos
             'name' => 'required|string|min:2|max:30',
             'description' => 'required|string|max:200',
             'location' => 'required|string',
-            'date' => 'required|date',
+            'date' => 'required|date|after_or_equal:today',
             'hour' => 'required|date_format:H:i',
             'type' => 'required|in:official,exhibition,charity',
 
@@ -43,6 +43,7 @@ class EventRequest extends FormRequest
             'description.max' => 'La descripción no puede tener más de 200 caracteres',
             'location.required' => 'La ubicación es obligatoria',
             'date.required' => 'La fecha es obligatoria',
+            'date.after_or_equal' => 'La fecha del evento no puede ser anterior a la actual',
             'hour.required' => 'La hora del evento es obligatoria',
             'type.required' => 'El tipo de evento es obligatorio',
             'type.in' => 'El tipo de evento no es válido',

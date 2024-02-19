@@ -20,6 +20,7 @@
             <br>
             Dorsal: {{ $player->number }}
             <br>
+            @if(auth()->user()->isAdmin())
             <form action="{{ route('players.updateVisibility', $player) }}" method="POST">
                 @csrf
                 @method('PATCH')
@@ -28,7 +29,7 @@
                     {{ $player->visibility ? 'Ocultar' : 'Mostrar' }}
                 </button>
             </form>
-
+            @endif
         </li>
         @endforeach
         @endauth

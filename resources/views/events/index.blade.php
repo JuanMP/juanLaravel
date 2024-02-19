@@ -20,9 +20,11 @@
                             <th>Hora</th>
                             <th>Tipo</th>
                             <th>Etiquetas</th>
-                            @if (auth()->check() && auth()->user()->isAdmin())
-                                <th>Acciones</th>
-                            @endif
+                            @auth
+                                @if (auth()->user()->isAdmin())
+                                    <th>Acciones</th>
+                                @endif
+                            @endauth
                         </tr>
                     </thead>
                     <tbody>
@@ -35,29 +37,34 @@
                                 <td>{{ $event->hour }}</td>
                                 <td>{{ $event->type }}</td>
                                 <td>{{ $event->tags }}</td>
-                                @if (auth()->check() && auth()->user()->isAdmin())
-                                    <td>
-                                        <a href="{{ route('events.show', $event->id) }}" class="btn btn-primary btn-sm">Ver detalles</a>
-                                        <a href="{{ route('events.edit', $event->id) }}" class="btn btn-warning btn-sm">Editar</a>
-                                        <form action="{{ route('events.destroy', $event->id) }}" method="post" style="display: inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                        </form>
-                                        @if (in_array($event->id, $likes))
-                                            <form action="{{ route('event.deleteLike', $event->id) }}" method="post">
-                                                @method('delete')
+                                @auth
+                                    @if (auth()->user()->isAdmin())
+                                        <td>
+                                            <a href="{{ route('events.show', $event->id) }}" class="btn btn-primary btn-sm">Ver detalles</a>
+                                            <a href="{{ route('events.edit', $event->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                                            <form action="{{ route('events.destroy', $event->id) }}" method="post" style="display: inline-block;">
                                                 @csrf
-                                                <button type="submit" class="btn btn-danger btn-sm">Ya no me gusta</button>
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                                             </form>
-                                        @else
-                                            <form action="{{ route('event.like', $event->id) }}" method="post">
-                                                @csrf
-                                                <button type="submit" class="btn btn-success btn-sm">Me gusta</button>
-                                            </form>
-                                        @endif
-                                    </td>
-                                @endif
+                                        </td>
+                                    @else
+                                        <td>
+                                            @if (in_array($event->id, $likes))
+                                                <form action="{{ route('event.deleteLike', $event->id) }}" method="post">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger btn-sm">Ya no me gusta</button>
+                                                </form>
+                                            @else
+                                                <form action="{{ route('event.like', $event->id) }}" method="post">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-success btn-sm">Me gusta</button>
+                                                </form>
+                                            @endif
+                                        </td>
+                                    @endif
+                                @endauth
                             </tr>
                         @endforeach
                     </tbody>

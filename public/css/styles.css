@@ -49,3 +49,12 @@ ul{
 
 
 
+.profile{
+    max-width: 100%;
+    height: auto;
+}
+
+.aroundProfile{
+    width: 50%;
+    text-align: center;
+}
