@@ -67,6 +67,11 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
+        //Si el usuario es invitado se le redirige a loginForm
+        if (!auth()->check()) {
+            return redirect()->route('loginForm');
+        }
+
         //mostrar detalles de un evento (último punto)
         $like = false;
     if (Auth::check()) {
@@ -84,6 +89,11 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
+        //Si el usuario es invitado se le redirige a loginForm
+        if(!auth()->check()) {
+            return redirect()->route('loginForm');
+
+        }
         //función para editar el evento si eres admin
         return view('events.edit', compact('event'));
     }

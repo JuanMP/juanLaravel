@@ -6,6 +6,8 @@ use App\Http\Requests\PlayerRequest;
 use App\Models\Player;
 use Illuminate\Http\Request;
 
+
+
 class PlayerController extends Controller
 {
     /**
@@ -62,6 +64,10 @@ class PlayerController extends Controller
      */
     public function show(Player $player)
     {
+        //Si el usuario es invitado se le redirige a loginForm
+        if(!auth()->check()) {
+            return redirect()->route('loginForm');
+        }
         //El método para visualizar un jugador en concreto cuando se le hace click
         return view('players.show', compact('player'));
     }

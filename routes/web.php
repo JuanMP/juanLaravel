@@ -111,8 +111,10 @@ Route::delete('event/{event}/deleteLike', [EventController::class, 'deleteLike']
 
 
 
+//Ruta para acceder a edición si estas logueado
+    Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit')->middleware('auth');
 
-
+    Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit')->middleware(['auth', 'admin_authenticate']);
 
 
 
