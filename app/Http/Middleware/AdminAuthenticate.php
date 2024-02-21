@@ -15,12 +15,13 @@ class AdminAuthenticate
      */
 
      //Middleware para el admin
-    public function handle(Request $request, Closure $next)
-        {
-            if (auth()->check() && auth()->user()->rol==='admin'){
-            return $next($request);
-            }
+     public function handle(Request $request, Closure $next)
+     {
+         if (auth()->check()) {
+             return $next($request);
+         }
 
-            abort(403, 'No tienes permiso para acceder a la página');
-    }
+         abort(403, 'No tienes permiso para acceder a la página');
+     }
+
 }

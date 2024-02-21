@@ -9,7 +9,7 @@
     </div>
     <div class="card-body">
         <div class="text-center">
-            <img src="{{ $player->photo }}" class="player-image">
+            <img src="{{ $player->photo }}" class="player-image-details">
         </div>
         <div class="card-text text-center">
             <h3>Nombre:</h3>

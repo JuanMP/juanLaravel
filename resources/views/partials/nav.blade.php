@@ -6,7 +6,7 @@
         </div>
         <ul class="nav navbar-nav">
             <li><a href="{{ route('index') }}">Inicio</a></li>
-            <li><a href="{{ route('players.index') }}">Plantilla</a></li>
+            <li><a href="{{ route('players.index') }}">Jugadores</a></li>
             <li><a href="{{ route('events.index') }}">Eventos</a></li>
             <li><a href="{{ route('products.index') }}">Tienda</a></li>
             <li><a href="{{ route('messages.create') }}">Contacto</a></li>

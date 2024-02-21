@@ -18,6 +18,7 @@ class LoginController extends Controller
         return view('auth.signup');
     }
 
+    //Registro
     public function signup(SignupRequest $request)
     {
         $user = new User();
@@ -34,6 +35,7 @@ class LoginController extends Controller
         return redirect()->route('users.profile');
     }
 
+    //Login
     public function loginForm()
     {
         if (Auth::viaRemember()) {
@@ -45,6 +47,7 @@ class LoginController extends Controller
         }
     }
 
+    //Función para loguearse
     public function login(Request $request)
     {
         $credentials = $request->only('username', 'password');
@@ -58,6 +61,7 @@ class LoginController extends Controller
         }
     }
 
+    //Función para cerrar sesión
     public function logout(Request $request)
     {
         Auth::guard('web')->logout();

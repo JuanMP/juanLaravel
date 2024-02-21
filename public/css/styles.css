@@ -21,7 +21,24 @@ footer{
 
 .player-image{
     max-width: 100px;
-    object-fit: cover; /* Cubre todo el contenedor con la imagen */
+    object-fit: cover;
+    height: 100px;
+}
+
+.player-details {
+    margin-top: 10px;
+}
+
+.player-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-auto-rows: auto;
+    grid-gap: 10px;
+    justify-content: start;
+}
+
+.player-image-details{
+    max-width: 140px;
 }
 
 ul{
@@ -33,12 +50,18 @@ ul{
     max-width: 240px;
 }
 
+.player {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
 .same-height-images{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 
 }
+
 
 
 .store-image{

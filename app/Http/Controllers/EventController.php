@@ -72,14 +72,14 @@ class EventController extends Controller
             return redirect()->route('loginForm');
         }
 
-        //mostrar detalles de un evento (último punto)
+        //Mostrar detalles de un evento (último punto)
         $like = false;
     if (Auth::check()) {
         $user = Auth::user();
         $like = $user->likedEvents()->where('id', $event->id)->exists();
     }
 
-    // Mostrar detalles del evento
+    //Mostrar detalles del evento
     return view('events.show', compact('event', 'like'));
 }
 
@@ -103,7 +103,7 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        //validar y actualizar lo editado
+        //Validar y actualizar lo editado
         $request->validate([
             'name' => 'required|string|max:30',
         ]);
@@ -119,13 +119,13 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //función para eliminar un evento
+        //Función para eliminar un evento
         $event->delete();
 
         return redirect()->route('events.index');
     }
 
-    //función para dar like
+    //Función para dar like
     public function EventLike(Request $request, Event $event)
     {
         $event = Event::findOrFail($event->id);
@@ -135,7 +135,7 @@ class EventController extends Controller
         return redirect()->back();
     }
 
-    //función para quitar like
+    //Función para quitar like
     public function deleteLike(Request $request, Event $event)
     {
         $user = auth()->user();

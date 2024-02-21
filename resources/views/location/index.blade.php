@@ -6,9 +6,6 @@
 
 <div class="location">
     <h1 class="text-center">Donde estamos ?</h1>
-    <p class="text-center">Situados entre las avenidas de Suecia y de Aragón de la capital valenciana, el campo de Mestalla ha vivido desde su
-        inauguración, el 20 de mayo de 1923, varias ampliaciones
-    </p>
     <strong class="text-center">Estamos ubicados en</strong>
     <br>
     <br>

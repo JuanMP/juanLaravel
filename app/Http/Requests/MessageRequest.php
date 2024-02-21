@@ -25,7 +25,7 @@ class MessageRequest extends FormRequest
     {
         return [
             //
-            'name' => 'required|string|min:2|max:30|regex:/^[a-zA-Z]+[a-zA-Z0-9]*$/',
+            'name' => 'required|string|min:2|max:30|regex:/^[a-zA-Z\s]+$/',
             'subject' => 'required|string|max:100',
             'text' => 'required|string',
         ];
@@ -37,7 +37,7 @@ class MessageRequest extends FormRequest
             'name.required' => 'Debes introducir un nombre',
             'name.min' => 'El nombre debe tener mínimo 2 carácteres',
             'name.max' => 'El nombre debe tener como máximo 30 carácteres',
-            'name.regex' => 'El nombre debe contener al menos una letra y puede incluir números.',
+            'name.regex' => 'El nombre debe contener letras.',
             'subject.required' => 'Debes introducir un asunto',
             'subject.max' => 'El asunto no puede tener más de 100 carácteres',
             'text.required' => 'Debes introducir un texto',
